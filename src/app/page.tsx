@@ -2,7 +2,7 @@ import Banner from "./_resources/components/Banner";
 
 const Home = () => {
   return (
-    <div className="">
+    <div className="h-[200vh]">
       <Banner />
     </div>
   );

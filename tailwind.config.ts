@@ -18,8 +18,21 @@ const config: Config = {
       },
     },
     extend: {
+      backgroundImage: {
+        "orange-fade": "linear-gradient(180deg, rgba(254,249,242,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 100%)"
+      },
+      boxShadow: {
+        "realistic-1": "rgba(0, 0, 0, 0.2) 0px 20px 30px;"
+      },
       fontFamily: {
         "prompt": "var(--font-prompt)"
+      },
+      maxWidth: {
+        "xs": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
+        "2xl": "1400px",
       },
       colors: {
         border: "hsl(var(--border))",

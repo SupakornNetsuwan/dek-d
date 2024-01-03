@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/core/components/navbar";
 
 const prompt = Prompt({
   subsets: ["thai"],
@@ -16,8 +17,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html >
-      <body className={prompt.className}>{children}</body>
+    <html>
+      <body className={prompt.className}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
