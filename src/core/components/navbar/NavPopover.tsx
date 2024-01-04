@@ -1,6 +1,5 @@
 import React from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@components/popover";
-import { Button } from "@components/button";
 import { cn } from "@/core/lib/utils";
 
 const NavbarPopover: React.FC<

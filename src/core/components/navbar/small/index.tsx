@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -9,16 +9,29 @@ import NavList from "../NavList";
 import { cn } from "@/core/lib/utils";
 import { novelCategories, howToUseCategories } from "..";
 import { X } from "lucide-react";
+import useIsNavbarOpen from "../hooks/useNavbarIsOpen";
 
-const SmallNavbarCore: React.FC<{ isOpen: boolean; toggle: () => void }> = ({
-  isOpen,
-  toggle,
-}) => {
+const SmallNavbarCore = () => {
+  const [isOpen, setIsOpen] = useIsNavbarOpen();
+
+  const toggle = useCallback(
+    () => setIsOpen((prevToggleState) => !prevToggleState),
+    [setIsOpen],
+  );
+
   return (
     <div className={cn("fixed inset-0 z-40", !isOpen && "pointer-events-none")}>
+      {isOpen && (
+        <X
+          size={24}
+          onClick={toggle}
+          className="absolute right-4 top-4 z-40 box-content rounded-md border-2 border-orange-500 bg-white p-1 text-orange-500"
+        />
+      )}
+
       <div
         className={cn(
-          "absolute inset-y-0 z-10 w-full max-w-80 translate-x-0 bg-white p-8 duration-200",
+          "absolute inset-y-0 z-10 w-full max-w-80 translate-x-0 bg-white  p-8 py-12 duration-200",
           !isOpen && "-translate-x-full opacity-0",
         )}
       >
@@ -69,11 +82,7 @@ const SmallNavbarCore: React.FC<{ isOpen: boolean; toggle: () => void }> = ({
           "duration-400 absolute inset-0 translate-x-0 bg-black/40 opacity-100 backdrop-blur duration-300",
           !isOpen && "opacity-0",
         )}
-      >
-        <button className=" absolute right-4 top-4 z-40 rounded-md border-2 border-orange-500 bg-white p-1 text-orange-500">
-          <X size={24} />
-        </button>
-      </div>
+      />
     </div>
   );
 };

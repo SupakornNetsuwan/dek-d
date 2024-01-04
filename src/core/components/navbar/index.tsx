@@ -1,11 +1,11 @@
 "use client";
 import { useCallback, useState } from "react";
-import { Button } from "@components/button";
-import logo from "@public/logo.png";
-import Image from "next/image";
-import { Menu, User } from "lucide-react";
 import SmallNavbarCore from "./small";
 import LargeNavbarCore from "./large";
+import NavFrame from "./NavFrame";
+import useIsNavbarOpen from "./hooks/useNavbarIsOpen";
+
+// Single point of truth (เวลาดึง Dynamic categories มาใช้ หรือปรับเปลี่ยนได้ทันที)
 
 export const novelCategories = [
   {
@@ -49,38 +49,12 @@ export const howToUseCategories = [
 ];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = useCallback(
-    () => setIsOpen((prevToggleState) => !prevToggleState),
-    [],
-  );
-
   return (
     <>
-      <div className="sticky top-0 z-30 mx-auto mb-4 flex w-full max-w-lg justify-between gap-x-8  border-b bg-white p-3 drop-shadow-sm lg:mt-2 lg:rounded-b-md lg:bg-white/90 lg:backdrop-blur-sm">
-        <Image
-          src={logo}
-          alt="dek-d_logo"
-          className="pointer-events-none size-8"
-        />
-        <Menu
-          size={24}
-          onClick={() => {
-            toggle();
-          }}
-          className="box-content self-center p-1 text-slate-800 lg:hidden"
-        />
+      <NavFrame>
         <LargeNavbarCore />
-        <Button
-          variant="outline"
-          className="hidden items-center gap-1 text-orange-500 hover:border-orange-500 hover:bg-orange-50 hover:text-orange-500 lg:flex"
-        >
-          <User size={18} />
-          <span>เข้าสู่ระบบ</span>
-        </Button>
-      </div>
-      <SmallNavbarCore isOpen={isOpen} toggle={toggle} />
+      </NavFrame>
+      <SmallNavbarCore />
     </>
   );
 };
