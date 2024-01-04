@@ -2,20 +2,7 @@ import React from "react";
 import NavList from "../NavList";
 import NavbarPopover from "../NavbarPopover";
 import { ChevronDown, ChevronRight, MoveRight } from "lucide-react";
-
-const novelCategories = [
-  { name: "นิยายแนะนำ", description: "Lorem ipsum dolor sit amet consectetur" },
-  {
-    name: "นิยายติดท็อป",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing",
-  },
-  { name: "รีวิวนิยาย", description: "Lorem ipsum dolor consectetur adipi" },
-  {
-    name: "คอลเล็กชันนิยาย",
-    description: "Lorem ipsum dolor adipisicing elit.",
-  },
-  { name: "นิยายตลอดกาล", description: "Lorem ipsum dolor sit amet" },
-];
+import { howToUseCategories, novelCategories } from "..";
 
 const LargeNavbarCore = () => {
   return (
@@ -23,7 +10,7 @@ const LargeNavbarCore = () => {
       <NavbarPopover
         popoverContent={novelCategories.map(({ name, description }) => (
           <div
-            className="group max-w-48 cursor-pointer rounded border border-transparent p-3 duration-150 hover:border-orange-200 hover:bg-orange-50 [&:nth-child(1)]:row-span-full [&:nth-child(1)]:bg-white"
+            className="group max-w-48 cursor-pointer rounded border border-transparent  p-3 duration-150 hover:border-orange-300 hover:bg-orange-50 [&:nth-child(1)]:row-span-full  [&:nth-child(1)]:bg-white  "
             key={name}
           >
             <div className="relative">
@@ -51,7 +38,8 @@ const LargeNavbarCore = () => {
       <NavList.Item href="#">ร้านค้า</NavList.Item>
 
       <NavbarPopover
-        popoverContent={novelCategories.map(({ name, description }) => (
+        className="grid-rows-3"
+        popoverContent={howToUseCategories.map(({ name, description }) => (
           <div
             className="group max-w-48 cursor-pointer rounded border border-transparent p-3 duration-150 hover:border-orange-200 hover:bg-orange-50"
             key={name}

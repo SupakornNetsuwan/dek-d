@@ -1,10 +1,15 @@
 "use client";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/core/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/core/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import BannerContent from "./BannerContent";
-import { cn } from "@/core/lib/utils";
 
-const BannersImages = [
+const bannersImages = [
   { url: "business.webp", controlClass: "" },
   { url: "help-mom.webp", controlClass: "" },
   { url: "sp-dragon.webp", controlClass: "" },
@@ -24,10 +29,10 @@ const Banner = () => {
       plugins={[Autoplay({ delay: 3500 })]}
       className="bg-transparent"
     >
-      <CarouselPrevious className="absolute top-1/2 left-4 -translate-y-1/2 z-10" />
-      <CarouselNext className="absolute top-1/2 right-4 -translate-y-1/2 z-10" />
+      <CarouselPrevious className="absolute left-4 top-1/2 z-10 -translate-y-1/2" />
+      <CarouselNext className="absolute right-4 top-1/2 z-10 -translate-y-1/2" />
       <CarouselContent className="ml-2">
-        {BannersImages.map(({ controlClass, url }) => (
+        {bannersImages.map(({ controlClass, url }) => (
           <BannerContent url={`/banners/${url}`} key={url} />
         ))}
       </CarouselContent>

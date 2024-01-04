@@ -7,8 +7,11 @@ import { Menu, User } from "lucide-react";
 import SmallNavbarCore from "./small";
 import LargeNavbarCore from "./large";
 
-const novelCategories = [
-  { name: "นิยายแนะนำ", description: "Lorem ipsum dolor sit amet consectetur" },
+export const novelCategories = [
+  {
+    name: "นิยายแนะนำ ✨",
+    description: "Lorem ipsum dolor sit amet consectetur",
+  },
   {
     name: "นิยายติดท็อป",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing",
@@ -19,6 +22,30 @@ const novelCategories = [
     description: "Lorem ipsum dolor adipisicing elit.",
   },
   { name: "นิยายตลอดกาล", description: "Lorem ipsum dolor sit amet" },
+];
+
+export const howToUseCategories = [
+  {
+    name: "กติกาการใช้งาน",
+    description: "Lorem ipsum dolor sit amet consectetur",
+  },
+  {
+    name: "ขั้นตอนการใช้งาน",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing",
+  },
+  {
+    name: "เริ่มต้นเขียนนิยาย",
+    description: "Lorem ipsum dolor consectetur adipi",
+  },
+  {
+    name: "บอร์ดนักเขียน",
+    description: "Lorem ipsum dolor adipisicing elit.",
+  },
+  {
+    name: "คำถามที่พบบ่อย",
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing",
+  },
+  { name: "แจ้งปัญหาการใช้งาน", description: "Lorem ipsum dolor consectetur" },
 ];
 
 const Navbar = () => {
@@ -47,7 +74,7 @@ const Navbar = () => {
         <LargeNavbarCore />
         <Button
           variant="outline"
-          className="hidden text-orange-500 hover:border-orange-500 hover:bg-orange-50 hover:text-orange-500 lg:flex items-center gap-1"
+          className="hidden items-center gap-1 text-orange-500 hover:border-orange-500 hover:bg-orange-50 hover:text-orange-500 lg:flex"
         >
           <User size={18} />
           <span>เข้าสู่ระบบ</span>

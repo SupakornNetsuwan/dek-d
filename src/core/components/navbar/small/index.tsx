@@ -7,20 +7,8 @@ import {
 } from "@components/accordion";
 import NavList from "../NavList";
 import { cn } from "@/core/lib/utils";
-
-const novelCategories = [
-  { name: "นิยายแนะนำ", description: "Lorem ipsum dolor sit amet consectetur" },
-  {
-    name: "นิยายติดท็อป",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing",
-  },
-  { name: "รีวิวนิยาย", description: "Lorem ipsum dolor consectetur adipi" },
-  {
-    name: "คอลเล็กชันนิยาย",
-    description: "Lorem ipsum dolor adipisicing elit.",
-  },
-  { name: "นิยายตลอดกาล", description: "Lorem ipsum dolor sit amet" },
-];
+import { novelCategories, howToUseCategories } from "..";
+import { X } from "lucide-react";
 
 const SmallNavbarCore: React.FC<{ isOpen: boolean; toggle: () => void }> = ({
   isOpen,
@@ -36,11 +24,9 @@ const SmallNavbarCore: React.FC<{ isOpen: boolean; toggle: () => void }> = ({
       >
         <NavList.Wrapper className="flex flex-col gap-y-4">
           <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
+            <AccordionItem value="novels" className="border-none">
               <AccordionTrigger className="no-underline">
-                <NavList.Item variants="plain" href="#">
-                  นิยาย
-                </NavList.Item>
+                นิยาย
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-y-2 text-slate-500">
                 {novelCategories.map(({ description, name }) => (
@@ -54,9 +40,20 @@ const SmallNavbarCore: React.FC<{ isOpen: boolean; toggle: () => void }> = ({
           <NavList.Item variants="plain" href="#">
             ร้านค้า
           </NavList.Item>
-          <NavList.Item variants="plain" href="#">
-            วิธีใช้
-          </NavList.Item>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="shop" className="border-none">
+              <AccordionTrigger className="no-underline ">
+                วิธีใช้
+              </AccordionTrigger>
+              <AccordionContent className="flex flex-col gap-y-2 text-slate-500">
+                {howToUseCategories.map(({ description, name }) => (
+                  <NavList.Item variants="plain" key={name} href="#">
+                    {name}
+                  </NavList.Item>
+                ))}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
           <NavList.Item variants="plain" href="#">
             มุมนักเขียน
           </NavList.Item>
@@ -65,13 +62,18 @@ const SmallNavbarCore: React.FC<{ isOpen: boolean; toggle: () => void }> = ({
           </NavList.Item>
         </NavList.Wrapper>
       </div>
+
       <div
         onClick={toggle}
         className={cn(
           "duration-400 absolute inset-0 translate-x-0 bg-black/40 opacity-100 backdrop-blur duration-300",
           !isOpen && "opacity-0",
         )}
-      />
+      >
+        <button className=" absolute right-4 top-4 z-40 rounded-md border-2 border-orange-500 bg-white p-1 text-orange-500">
+          <X size={24} />
+        </button>
+      </div>
     </div>
   );
 };
