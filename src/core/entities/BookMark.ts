@@ -1,4 +1,4 @@
-type Esposide = { nth: number; name: string };
+type Episode = { nth: number; name: string; flaged: boolean };
 
 /**
  * @class BookMark
@@ -16,16 +16,16 @@ class BookMark {
     private _name: string;
     private _thumbnail: string;
     private _author: string;
-    private _espisode: Esposide[];
+    private _espisodes: Episode[];
     private _updatedAt: Date;
     private _createdAt: Date;
 
-    constructor(name: string, thumbnail: string, author: string, espisode: Esposide[], updatedAt: Date, createdAt: Date) {
+    constructor(name: string, thumbnail: string, author: string, espisode: Episode[], updatedAt: Date, createdAt: Date) {
         this._id = new Date().getTime().toString();
         this._name = name;
         this._thumbnail = thumbnail;
         this._author = author;
-        this._espisode = espisode;
+        this._espisodes = espisode;
         this._updatedAt = updatedAt;
         this._createdAt = createdAt;
     }
@@ -58,12 +58,12 @@ class BookMark {
         this._author = value;
     }
 
-    get espisode(): Esposide[] {
-        return this._espisode;
+    get episodes(): Episode[] {
+        return this._espisodes;
     }
 
-    set espisode(value: Esposide[]) {
-        this._espisode = value;
+    set episodes(value: Episode[]) {
+        this._espisodes = value;
     }
 
     get updatedAt(): Date {
@@ -81,7 +81,25 @@ class BookMark {
     set createdAt(value: Date) {
         this._createdAt = value;
     }
+
+    get getMarkedEpisode(): Episode | undefined {
+        return this.episodes.find(episode => episode.flaged)
+    }
+
+    get getLastEpisode(): Episode | undefined {
+        return this.episodes.at(-1)
+    }
+
+    get getProgress(): number {
+
+        const lastEpisode = this.getLastEpisode
+        const markedEpisode = this.getMarkedEpisode
+
+        if (!lastEpisode || !markedEpisode) return 0 // No appropriate data 🔴
+
+        return Math.round((markedEpisode.nth * 100) / lastEpisode.nth)
+    }
 }
- 
+
 
 export default BookMark;
