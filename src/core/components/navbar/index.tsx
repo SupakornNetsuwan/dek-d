@@ -1,11 +1,11 @@
-"use client";
-import { useCallback, useState } from "react";
+"server only"
 import SmallNavbarCore from "./small";
 import LargeNavbarCore from "./large";
 import NavFrame from "./NavFrame";
-import useIsNavbarOpen from "./hooks/useNavbarIsOpen";
 
-// Single point of truth (เวลาดึง Dynamic categories มาใช้ หรือปรับเปลี่ยนได้ทันที)
+/**
+ * @explain Single point of truth (เวลาดึง Dynamic categories มาใช้ หรือปรับเปลี่ยนได้ทันที) และ สามารถใช้ SSR ได้
+ */
 
 export const novelCategories = [
   {

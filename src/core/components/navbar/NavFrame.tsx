@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback } from "react";
 import logo from "@public/logo.png";
 import Image from "next/image";
@@ -13,7 +14,7 @@ const NavFrame: React.FC<React.PropsWithChildren> = ({ children }) => {
   );
 
   return (
-    <div className="sticky z-30 mx-auto mb-4 flex w-full max-w-lg items-center justify-between gap-x-8 border-b bg-white p-3 drop-shadow-sm lg:top-2 lg:mt-2 lg:rounded lg:bg-white/90 lg:backdrop-blur-sm">
+    <div className="sticky z-30 mx-auto mb-4 flex w-full max-w-xl items-center justify-between gap-x-8 border-b bg-white p-3 drop-shadow-sm top-0 xl:top-2 lg:mt-2 lg:rounded lg:bg-white/90 xl:backdrop-blur-sm">
       <Image
         src={logo}
         alt="dek-d_logo"

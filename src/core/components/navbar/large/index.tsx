@@ -1,7 +1,8 @@
+"server only"
 import React from "react";
 import NavList from "../NavList";
 import NavbarPopover from "../NavPopover";
-import { ChevronDown, ChevronRight, MoveRight, User } from "lucide-react";
+import { ChevronDown, MoveRight, User } from "lucide-react";
 import { howToUseCategories, novelCategories } from "..";
 import { Button } from "../../ui/button";
 
@@ -12,7 +13,7 @@ const LargeNavbarCore = () => {
         <NavbarPopover
           popoverContent={novelCategories.map(({ name, description }) => (
             <div
-              className="group max-w-48 cursor-pointer rounded border border-transparent  p-3 duration-150 hover:border-orange-300 hover:bg-orange-50 [&:nth-child(1)]:row-span-full  [&:nth-child(1)]:bg-gradient-to-tl  [&:nth-child(1)]:from-amber-200/20 [&:nth-child(1)]:to-white [&:nth-child(1)]:via-yellow-400/20"
+              className="group max-w-48 cursor-pointer rounded border border-transparent  p-3 duration-150 hover:border-orange-300 hover:bg-orange-50 [&:nth-child(1)]:row-span-full  [&:nth-child(1)]:bg-gradient-to-tl  [&:nth-child(1)]:from-amber-200/20 [&:nth-child(1)]:to-white [&:nth-child(1)]:via-yellow-300/20"
               key={name}
             >
               <div className="relative">
