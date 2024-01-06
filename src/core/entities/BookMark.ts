@@ -11,7 +11,9 @@ type Episode = { nth: number; name: string; flaged: boolean };
  * @property {Date} createdAt วันเวลาที่ถูกสร้าง
  */
 
-class BookMark {
+export interface BookMarkDto { id: string, name: string, thumbnail: string, author: string, episodes: Episode[], updatedAt: Date, createdAt: Date }
+
+class BookMark implements BookMarkDto {
     private _id: string
     private _name: string;
     private _thumbnail: string;
@@ -20,12 +22,12 @@ class BookMark {
     private _updatedAt: Date;
     private _createdAt: Date;
 
-    constructor(name: string, thumbnail: string, author: string, espisode: Episode[], updatedAt: Date, createdAt: Date) {
-        this._id = new Date().getTime().toString();
+    constructor({ id, author, createdAt, episodes, name, thumbnail, updatedAt }: BookMarkDto) {
+        this._id = id;
         this._name = name;
         this._thumbnail = thumbnail;
         this._author = author;
-        this._espisodes = espisode;
+        this._espisodes = episodes;
         this._updatedAt = updatedAt;
         this._createdAt = createdAt;
     }
@@ -98,6 +100,20 @@ class BookMark {
         if (!lastEpisode || !markedEpisode) return 0 // No appropriate data 🔴
 
         return Math.round((markedEpisode.nth * 100) / lastEpisode.nth)
+    }
+
+    public toPlainObject() {
+        const dto: BookMarkDto = {
+            author: this.author,
+            createdAt: this.createdAt,
+            episodes: this.episodes,
+            id: this.id,
+            name: this.name,
+            thumbnail: this.thumbnail,
+            updatedAt: this.updatedAt
+        }
+
+        return dto
     }
 }
 

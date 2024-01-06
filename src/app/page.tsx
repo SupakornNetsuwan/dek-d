@@ -8,7 +8,7 @@ import BookmarkSection from "./_resources/components/BookmarkSection";
 
 const Home = () => {
   return (
-    <div className="min-h-[100dvh]">
+    <div className="pb-[10dvh]">
       <Banner />
       <PrimaryWrapper className="relative pt-12">
         <div className="absolute inset-x-0 top-0 z-0 h-64 bg-gradient-to-b from-slate-50 to-white" />
