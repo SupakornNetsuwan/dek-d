@@ -1,7 +1,7 @@
 import { z } from "zod"
 import Book, { type EpisodeDto, BookDto, episodeSchema, createBookSchema } from "./book.entity";
 
-export interface BookMarkDto { book: BookDto, flaggedEpisode: EpisodeDto, updatedAt: Date, createdAt: Date }
+export interface BookMarkDto { book: BookDto, flaggedEpisode: EpisodeDto, updatedAt?: Date, createdAt?: Date }
 
 /**
  * @class BookMark
@@ -20,8 +20,8 @@ class BookMark {
     constructor({ book: bookDto, flaggedEpisode, createdAt, updatedAt }: BookMarkDto) {
         this.book = new Book(bookDto) // เราเก็บ property หนังสือไว้เพื่อเข้าถึงได้ว่าที่คั่นนี้ของหนังสือเล่มไหนตามหลักการ Objecy Oriented ✨
         this.flaggedEpisode = flaggedEpisode;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.updatedAt = updatedAt || new Date();
+        this.createdAt = createdAt || new Date();
 
         if (!this.book.episodes.some(episode => JSON.stringify(episode) === JSON.stringify(flaggedEpisode))) {
             throw new Error("Bookmark episode was not found in entries of episodes")
@@ -79,8 +79,8 @@ class BookMark {
 export const createBookMarkSchema = z.object({
     book: createBookSchema,
     flaggedEpisode: episodeSchema,
-    createdAt: z.date(),
-    updatedAt: z.date()
+    createdAt: z.date().optional(),
+    updatedAt: z.date().optional()
 }) satisfies z.ZodType<BookMarkDto>
 
 export type CreateBookMarkSchemaType = z.infer<typeof createBookMarkSchema>

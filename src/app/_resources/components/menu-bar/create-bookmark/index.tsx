@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@components/dialog";
-import CreateBookMarkForm from "./CreateBookMarkForm";
+import CreateBookMarkForm from "./form/CreateBookMarkForm";
 
 type ChildrenType = React.FC<{
   close: () => void;
@@ -32,7 +32,7 @@ const AddBookMark: React.FC<{
       <DialogPortal>
         {/* Background overlay สีดำ ๆ  */}
         <DialogOverlay onClick={close} />
-        <DialogContent className="w-[90vw]">
+        <DialogContent className="w-[90vw] max-h-[80dvh] overflow-y-auto">
           {/* Decoupling กากบาทปิด Dialog ออกมา */}
           <CustomDialogClose onClick={close} />
           <DialogHeader>

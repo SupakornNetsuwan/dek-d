@@ -2,44 +2,8 @@ import BookMark from "../entities/bookmark.entity"
 
 const getAllBookMarks = async () => {
     const bookMarks: BookMark[] = [
-        new BookMark({
-            book: {
-                id: "a1c",
-                name: "The Great Gatsby",
-                thumbnail: "great_gatsby_thumbnail.jpg",
-                author: "F. Scott Fitzgerald",
-                episodes: [
-                    { nth: 1, name: "ต้นกำเนิดของตระกูลหยาง" },
-                    { nth: 2, name: "ต้นกำเนิดของตระกูลหยาง" },
-                    { nth: 3, name: "Snow goes flex" },
-                    { nth: 4, name: "ต้นกำเนิดของตระกูลหยาง" },
-                    { nth: 5, name: "ต้นกำเนิดของตระกูลหยาง" },
-                    { nth: 6, name: "ต้นกำเนิดของตระกูลหยาง" }]
-                ,
 
-            },
-            flaggedEpisode: { nth: 3, name: "Snow goes flex" },
-            createdAt: new Date("2022-09-12"),
-            updatedAt: new Date("2022-09-12")
-        }),
-        new BookMark({
-            book: {
-                id: "caa",
-                name: "To Kill a Mockingbird",
-                thumbnail: "to_kill_a_mockingbird_thumbnail.jpg",
-                author: "Harper Lee",
-                episodes: [
-                    { nth: 1, name: "ต้นกำเนิดของตระกูลหยาง" },
-                    { nth: 2, name: "ต้นกำเนิดของตระกูลหยาง" },
-                    { nth: 3, name: "ต้นกำเนิดของตระกูลหยาง" },
-                    { nth: 4, name: "Mocker gate" },
-                    { nth: 5, name: "ต้นกำเนิดของตระกูลหยาง" },
-                ],
-            },
-            flaggedEpisode: { nth: 4, name: "Mocker gate" },
-            createdAt: new Date("2022-11-08"),
-            updatedAt: new Date("2022-11-08")
-        }),
+    
         // new BookMark({
         //     id: "67f",
         //     name: "1984",
