@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import PrimaryWrapper from "@/core/layouts/PrimaryWrapper";
 import { Separator } from "@components/separator";
 import Banner from "./_resources/components/banner";
-import MenuBar from "./_resources/components/MenuBar";
+import MenuBar from "./_resources/components/menu-bar";
 import BookmarkSection from "./_resources/components/BookmarkSection";
 
 const Home = () => {

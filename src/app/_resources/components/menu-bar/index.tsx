@@ -9,7 +9,7 @@ import {
 } from "@components/dropdown-menu";
 import { Button } from "@/core/components/ui/button";
 import { Plus, Settings2, Trash2 } from "lucide-react";
-import AddBookMark from "./bookmark/AddBookMark";
+import AddBookMark from "./create-bookmark";
 
 const MenuBar = () => {
   return (

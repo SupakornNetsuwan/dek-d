@@ -1,6 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
-import BookMark, { BookMarkDto } from "@/core/entities/BookMark";
+import BookMark, { BookMarkDto } from "@/core/entities/bookmark.entity";
 import Image from "next/image";
 import bookMarkThumbnail from "@public/bookmark-thumbnail.jpg";
 import { useGSAP } from "@gsap/react";
@@ -13,20 +13,16 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@components/dropdown-menu";
 
-const BookMarkCard: React.FC<{ plainBookMarkObject: BookMarkDto }> = ({
-  plainBookMarkObject,
+const BookMarkCard: React.FC<{ bookMarkDto: BookMarkDto }> = ({
+  bookMarkDto,
 }) => {
   useGSAP(() => {});
 
-  const bookMark = useMemo(
-    () => new BookMark(plainBookMarkObject),
-    [plainBookMarkObject],
-  );
+  const bookMark = useMemo(() => new BookMark(bookMarkDto), [bookMarkDto]);
 
   return (
     <div className="flex flex-col space-y-1 rounded-lg border bg-gray-50 p-2">
@@ -36,7 +32,7 @@ const BookMarkCard: React.FC<{ plainBookMarkObject: BookMarkDto }> = ({
             <Button
               variant="outline"
               size="icon"
-              className="size-6 sm:size-5 rounded-sm sm:border-none"
+              className="size-6 rounded-sm sm:size-5 sm:border-none"
             >
               <MoreHorizontal size={14} className="" />
             </Button>
@@ -70,34 +66,37 @@ const BookMarkCard: React.FC<{ plainBookMarkObject: BookMarkDto }> = ({
         </div>
         <div className="ml-1.5 flex basis-2/3 flex-col  overflow-hidden rounded-md bg-white p-1.5">
           <h4 className="truncate text-base font-medium text-orange-500">
-            {bookMark.name}
+            {bookMark.book.name}
           </h4>
 
           <p className="text-xs leading-tight text-slate-500">
-            {bookMark.author}
+            {bookMark.book.author}
           </p>
           <div className="mt-auto flex flex-col items-start">
             <div className="flex w-full justify-start">
               <p className="whitespace-nowrap rounded-sm bg-green-50 px-1 py-0.5 text-[10px] text-green-500">
-                ตอนที่ {bookMark.getMarkedEpisode?.nth}
+                ตอนที่ {bookMark.flaggedEpisode.nth}
               </p>
               <p
-                title={bookMark.getMarkedEpisode?.name}
+                title={bookMark.flaggedEpisode.name}
                 className="max-w-full truncate rounded-sm bg-slate-50 px-1 py-0.5 text-[10px] text-slate-500"
               >
-                {bookMark.getMarkedEpisode?.name}
+                {bookMark.flaggedEpisode.name}
               </p>
             </div>
             <ProgressBar.Wrapper className="my-2">
               <ProgressBar.Solid
-                data={[...new Array(bookMark.getMarkedEpisode?.nth).keys()]}
+                data={[...new Array(bookMark.flaggedEpisode.nth).keys()]}
               />
               <ProgressBar.Empty
-                data={[...new Array(bookMark.getLastEpisode?.nth).keys()]}
+                data={[...new Array(bookMark.getUnReadAmount).keys()]}
               />
             </ProgressBar.Wrapper>
           </div>
-          <div>
+          <div className="flex items-center space-x-1">
+            <p className="text-[10px] text-orange-500">
+              อ่านไป {bookMark.getProgress}%
+            </p>
             <p className="text-[10px] text-slate-500">
               คั่นล่าสุด {formatThaiDate(bookMark.updatedAt).join(" ")}
             </p>

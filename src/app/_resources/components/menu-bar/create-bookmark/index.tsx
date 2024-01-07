@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import CreateBookMarkProvider from "./providers/CreateBookMarkProvider";
 import {
   CustomDialogClose,
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@components/dialog";
+import CreateBookMarkForm from "./CreateBookMarkForm";
 
 type ChildrenType = React.FC<{
   close: () => void;
@@ -29,17 +30,21 @@ const AddBookMark: React.FC<{
     <Dialog open={isOpen}>
       <DialogTrigger asChild>{children({ close, open })}</DialogTrigger>
       <DialogPortal>
-        <DialogOverlay onClick={close} /> {/* Background overlay สีดำ ๆ  */}
-        <DialogContent>
-          <CustomDialogClose onClick={close} />
+        {/* Background overlay สีดำ ๆ  */}
+        <DialogOverlay onClick={close} />
+        <DialogContent className="w-[90vw]">
           {/* Decoupling กากบาทปิด Dialog ออกมา */}
+          <CustomDialogClose onClick={close} />
           <DialogHeader>
             <DialogTitle>สร้างที่คั่นใหม่ ✨</DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              ที่คั่นหนังสือช่วยให้คุณสามารถกลับมาอ่านหนังสือ ณ
+              จุดเดิมที่คั่นไว้ได้โดยไม่ต้องจำชื่อบท ชื่อตอน หรือ เลขหน้า
             </DialogDescription>
           </DialogHeader>
+          <CreateBookMarkProvider>
+            <CreateBookMarkForm />
+          </CreateBookMarkProvider>
         </DialogContent>
       </DialogPortal>
     </Dialog>
