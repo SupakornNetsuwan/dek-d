@@ -10,60 +10,17 @@ import {
   FormMessage,
 } from "@components/form";
 import { Button } from "@components/button";
-import { Input } from "@components/input";
-import useBookListAtom from "@/core/hooks/useBookListAtom";
+import SetBookField from "./SetBookField";
+import SetBookEpisodeField from "./SetBookEpisodeField";
 
 const CreateBookMarkForm = () => {
-  const [bookList] = useBookListAtom();
-  const { control, watch } = useFormContext<CreateBookMarkSchemaType>();
-
-  console.log(watch())
-
+  const { control, watch, getValues } =
+    useFormContext<CreateBookMarkSchemaType>();
+  watch;
   return (
     <div className="flex  flex-col gap-y-4">
-      <FormField
-        control={control}
-        name="book"
-        render={({ field: { onChange, ...field } }) => (
-          <FormItem>
-            <FormControl>
-              <div className="flex flex-wrap gap-2 rounded-md border bg-white p-2">
-                {bookList.map((book) => {
-                  const setBook = () => {
-                    onChange({ x: "x" });
-                  };
-
-                  return (
-                    <Button
-                      onClick={setBook}
-                      key={book.id}
-                      variant="secondary"
-                      className=""
-                    >
-                      <span>{book.name}</span>
-                    </Button>
-                  );
-                })}
-              </div>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      {/* <FormField
-        control={control}
-        name="book"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>ผู้แต่ง</FormLabel>
-            <FormControl>
-              <Input placeholder="ชื่อ" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      /> */}
+      <SetBookField />
+      <SetBookEpisodeField />
 
       <Button className="self-end" type="submit">
         Submit
