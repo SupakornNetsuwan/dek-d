@@ -11,18 +11,18 @@ import {
 } from "@components/form";
 import { Button } from "@components/button";
 import SetBookField from "./SetBookField";
-import SetBookEpisodeField from "./SetBookEpisodeField";
+import SetEpisodeField from "./SetEpisodeField";
 
 const CreateBookMarkForm = () => {
-  const { control, watch, getValues } =
-    useFormContext<CreateBookMarkSchemaType>();
-  watch;
+  const { watch } = useFormContext<CreateBookMarkSchemaType>();
+
+  console.log(watch());
+
   return (
     <div className="flex  flex-col gap-y-4">
       <SetBookField />
-      <SetBookEpisodeField />
-
-      <Button className="self-end" type="submit">
+      <SetEpisodeField />
+      <Button className="self-end">
         Submit
       </Button>
     </div>

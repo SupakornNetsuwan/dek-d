@@ -66,8 +66,7 @@ class Book implements BookDto {
 
 export const episodeSchema = z.object({
     nth: z.number(),
-    name: z.string(),
-    flagged: z.boolean()
+    name: z.string()
 }) satisfies z.ZodType<EpisodeDto>
 
 export const createBookSchema = z.object({

@@ -1,8 +1,8 @@
 import { useAtom } from "jotai";
-import bookListAtom from "../atoms/book-list.atom";
+import bookListStorageAtom from "../atoms/book-list-storage.atom";
 
-const useBookListAtom = () => {
-  return useAtom(bookListAtom);
+const useBookListStorageAtom = () => {
+  return useAtom(bookListStorageAtom);
 };
 
-export default useBookListAtom;
+export default useBookListStorageAtom;

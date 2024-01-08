@@ -1,7 +1,7 @@
 import { atomWithStorage } from "jotai/utils"
 import Book from "../entities/book.entity"
 
-const bookListAtom = atomWithStorage<Book[]>("bookList", [
+const bookListStorageAtom = atomWithStorage<Book[]>("bookList", [
     new Book({
         id: "1",
         name: "The Great Gatsby",
@@ -31,4 +31,4 @@ const bookListAtom = atomWithStorage<Book[]>("bookList", [
     })
 ])
 
-export default bookListAtom
+export default bookListStorageAtom

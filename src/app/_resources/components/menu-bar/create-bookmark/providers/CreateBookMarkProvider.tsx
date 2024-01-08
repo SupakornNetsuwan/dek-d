@@ -5,19 +5,27 @@ import {
   createBookMarkSchema,
   type CreateBookMarkSchemaType,
 } from "@/core/entities/bookmark.entity";
+import useBookListStorageAtom from "@/core/hooks/useBookListAtom";
 
 const CreateBookMarkProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
+  const [bookList, setBookList] = useBookListStorageAtom();
   const methods = useForm<CreateBookMarkSchemaType>({
     resolver: zodResolver(createBookMarkSchema),
+    defaultValues: {
+      book: bookList.at(0),
+    },
   });
 
-  const handleSubmit: SubmitHandler<CreateBookMarkSchemaType> = (data) => {};
+  const handleSubmit: SubmitHandler<CreateBookMarkSchemaType> = (data) => {
+    // จำลองว่า POST Request ไปสร้างรายการใหม่ที่ Back-end side
+    
+  };
 
   // Debug for form error state
   useEffect(() => {
-    console.log(methods.formState.errors);
+    if(methods.formState.errors) console.log("ERROR :", methods.formState.errors);
   }, [methods.formState.errors]);
 
   return (
