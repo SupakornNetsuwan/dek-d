@@ -27,7 +27,7 @@ const BookmarkSection = () => {
         return (
           <BookMarkCard
             key={bookmark.id}
-            bookMarkDto={bookMarkInstance.toDto()}
+            bookmarkDto={bookMarkInstance.toDto()}
           />
         );
       })}

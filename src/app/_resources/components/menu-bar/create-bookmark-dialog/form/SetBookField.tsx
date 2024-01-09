@@ -10,11 +10,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@components/form";
-import CheckButton from "./CheckButton";
+import CheckButton from "../../../../../../core/components/CheckButton";
 import { Book } from "lucide-react";
 import { cn } from "@/core/lib/utils";
 import Image from "next/image";
-import bookCover from "@public/bookmark-thumbnail.jpg";
 
 const SetBookField = () => {
   const [bookList] = useBookStorageAtom();
@@ -51,16 +50,18 @@ const SetBookField = () => {
                     )}
                   >
                     <Image
-                      src={bookCover}
+                      src={`/${book.thumbnail}`}
                       alt="book_cover"
                       className="w-28 rounded-md"
+                      width={80}
+                      height={200}
                     />
                     <CheckButton
                       name={name}
                       isSelected={isSelected}
                       onClick={() => setBook(book)}
                       className={cn(
-                        "h-auto border-none bg-slate-50 py-0 group-hover:bg-slate-100 max-w-full truncate whitespace-pre-line",
+                        "h-auto max-w-full truncate whitespace-pre-line border-none bg-slate-50 py-0 group-hover:bg-slate-100",
                         isSelected && "bg-orange-50 group-hover:bg-orange-50",
                       )}
                     >

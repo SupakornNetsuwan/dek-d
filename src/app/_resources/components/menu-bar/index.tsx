@@ -9,7 +9,9 @@ import {
 } from "@components/dropdown-menu";
 import { Button } from "@/core/components/ui/button";
 import { Plus, Settings2, Trash2 } from "lucide-react";
-import CreateBookmarkDialog from "./create-bookmark-dialog";
+import CreateBookMarkProvider from "./create-bookmark-dialog/providers/CreateBookmarkProvider";
+import CreateBookMarkForm from "./create-bookmark-dialog/form";
+import CustomDialog from "@/core/components/CustomDialog";
 
 const MenuBar = () => {
   return (
@@ -21,7 +23,15 @@ const MenuBar = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-36 max-w-none">
-        <CreateBookmarkDialog>
+        <CustomDialog
+          title="สร้างที่คั่นใหม่ ✨"
+          description=" ที่คั่นหนังสือช่วยให้คุณสามารถกลับมาอ่านหนังสือ ณ จุดเดิมที่คั่นไว้ได้โดยไม่ต้องจำชื่อบท ชื่อตอน หรือ เลขหน้า"
+          render={({ close }) => (
+            <CreateBookMarkProvider closeDialog={close}>
+              <CreateBookMarkForm />
+            </CreateBookMarkProvider>
+          )}
+        >
           {({ open }) => (
             <DropdownMenuItem
               onClick={(e) => {
@@ -37,7 +47,7 @@ const MenuBar = () => {
               <span>เพิ่มรายการ</span>
             </DropdownMenuItem>
           )}
-        </CreateBookmarkDialog>
+        </CustomDialog>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="group flex cursor-pointer justify-between p-1 sm:p-2">
           <Trash2

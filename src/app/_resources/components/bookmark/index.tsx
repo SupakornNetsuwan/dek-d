@@ -2,7 +2,6 @@
 import React, { useMemo } from "react";
 import Bookmark, { BookmarkDto } from "@/core/entities/bookmark.entity";
 import Image from "next/image";
-import bookmarkThumbnail from "@public/bookmark-thumbnail.jpg";
 import { useGSAP } from "@gsap/react";
 import { formatThaiDate } from "@/core/lib/utils";
 import ProgressBar from "./ProgressBar";
@@ -16,15 +15,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@components/dropdown-menu";
-import DeleteBookmarkDialog from "./DeleteBookmarkDialog";
-import EditBookmarkDialog from "./EditBookmarkDialog";
+import CustomDialog from "@/core/components/CustomDialog";
+import EditBookmarkProvider from "./edit-bookmark-dialog/providers/EditBookmarkProvider";
+import DeleteBookmarkDialogContent from "./delete-bookmark-dialog";
+import EditBookMarkForm from "./edit-bookmark-dialog/form";
 
-const BookMarkCard: React.FC<{ bookMarkDto: BookmarkDto }> = ({
-  bookMarkDto,
+const BookMarkCard: React.FC<{ bookmarkDto: BookmarkDto }> = ({
+  bookmarkDto,
 }) => {
   useGSAP(() => {});
 
-  const bookmark = useMemo(() => new Bookmark(bookMarkDto), [bookMarkDto]);
+  const bookmark = useMemo(() => new Bookmark(bookmarkDto), [bookmarkDto]);
 
   return (
     <div className="flex flex-col space-y-1 rounded-lg border bg-gray-50 p-2">
@@ -40,7 +41,20 @@ const BookMarkCard: React.FC<{ bookMarkDto: BookmarkDto }> = ({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-36 max-w-none">
-            <EditBookmarkDialog bookmarkId={bookmark.id}>
+            <CustomDialog
+              title="แก้ไขที่คั่นหนังสือ"
+              description="แก้ไขข้อมูลที่คั่นหนังสือเดิมในคลัง"
+              render={({ open, close }) => {
+                return (
+                  <EditBookmarkProvider
+                    bookmarkId={bookmark.id}
+                    closeDialog={close}
+                  >
+                    <EditBookMarkForm />
+                  </EditBookmarkProvider>
+                );
+              }}
+            >
               {({ open }) => {
                 return (
                   <DropdownMenuItem
@@ -58,41 +72,50 @@ const BookMarkCard: React.FC<{ bookMarkDto: BookmarkDto }> = ({
                   </DropdownMenuItem>
                 );
               }}
-            </EditBookmarkDialog>
+            </CustomDialog>
 
             <DropdownMenuSeparator />
-            <DeleteBookmarkDialog bookmarkId={bookmark.id}>
-              {({ open }) => {
-                return (
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      open();
-                    }}
-                    className="group flex cursor-pointer justify-between p-1 sm:p-2"
-                  >
-                    <Trash2
-                      size={14}
-                      className="box-content rounded-sm bg-gray-100 p-2 group-hover:bg-gray-200"
-                    />
-                    <span>ลบรายการ</span>
-                  </DropdownMenuItem>
-                );
-              }}
-            </DeleteBookmarkDialog>
+            <CustomDialog
+              title="ลบที่คั่นหนังสือ"
+              description="คุณจะไม่สามารถกู้คืนที่คั่นหนังสือได้"
+              render={() => (
+                <DeleteBookmarkDialogContent bookmarkId={bookmark.id} />
+              )}
+            >
+              {({ open }) => (
+                <DropdownMenuItem
+                  onClick={(e) => {
+                    e.preventDefault();
+                    open();
+                  }}
+                  className="group flex cursor-pointer justify-between p-1 sm:p-2"
+                >
+                  <Trash2
+                    size={14}
+                    className="box-content rounded-sm bg-gray-100 p-2 group-hover:bg-gray-200"
+                  />
+                  <span>ลบรายการ</span>
+                </DropdownMenuItem>
+              )}
+            </CustomDialog>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
       <div className="flex">
         <div className="basis-1/3">
           <Image
-            src={bookmarkThumbnail}
+            src={`/${bookmark.book.thumbnail}`}
             alt="bookmark_thumbnail"
-            className="rounded-lg"
+            className="pointer-events-none w-full rounded-lg"
+            width={150}
+            height={200}
           />
         </div>
         <div className="ml-1.5 flex basis-2/3 flex-col  overflow-hidden rounded-md bg-white p-1.5">
-          <h4 className="truncate text-base font-medium text-orange-500">
+          <h4
+            title={bookmark.book.name}
+            className="truncate text-base font-medium text-orange-500"
+          >
             {bookmark.book.name}
           </h4>
 

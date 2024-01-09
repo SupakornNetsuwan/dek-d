@@ -32,8 +32,13 @@ const useBookmarkStorageAtom = () => {
     setBookmarkStorage(copied);
   };
 
+  const getBookmark = (id: string) => {
+    return bookmarkStorage.find((bookmark) => bookmark.id === id);
+  };
+
   return {
     bookmarkList: bookmarkStorage,
+    getBookmark,
     addBookmark,
     deleteBookmark,
     updateBookmark,

@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@components/form";
-import CheckButton from "./CheckButton";
+import CheckButton from "../../../../../../core/components/CheckButton";
 
 const SetEpisodeField = () => {
   const { control, watch } = useFormContext<CreateBookmarkSchemaType>();
@@ -21,6 +21,7 @@ const SetEpisodeField = () => {
   if (!flaggedEpisodeField) {
     return null;
   }
+  
   return (
     <FormField
       name="flaggedEpisode"
