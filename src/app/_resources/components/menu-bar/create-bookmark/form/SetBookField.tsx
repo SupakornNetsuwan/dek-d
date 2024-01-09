@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useBookListStorageAtom from "@/core/hooks/useBookListAtom";
+import useBookStorageAtom from "@/core/hooks/useBookStorageAtom";
 import { useFormContext, useWatch } from "react-hook-form";
 import { CreateBookMarkSchemaType } from "@/core/entities/bookmark.entity";
 import {
@@ -11,9 +11,13 @@ import {
   FormMessage,
 } from "@components/form";
 import CheckButton from "./CheckButton";
+import { Book } from "lucide-react";
+import { cn } from "@/core/lib/utils";
+import Image from "next/image";
+import bookCover from "@public/bookmark-thumbnail.jpg";
 
 const SetBookField = () => {
-  const [bookList] = useBookListStorageAtom();
+  const [bookList] = useBookStorageAtom();
   const { control, watch, setValue } =
     useFormContext<CreateBookMarkSchemaType>();
   const bookFieldWatch = watch("book");
@@ -31,19 +35,38 @@ const SetBookField = () => {
       control={control}
       render={({ field: { value, onChange: setBook, name } }) => (
         <FormItem>
-          <FormLabel>{name}</FormLabel>
+          <FormLabel>เลือกหนังสือ</FormLabel>
           <FormControl>
-            <div className="flex max-h-[20dvh] flex-col gap-2 overflow-y-auto rounded-md border bg-white p-2 lg:max-h-none lg:flex-row lg:flex-wrap">
+            <div className="grid max-h-[50dvh] grid-cols-2 gap-2 overflow-y-auto rounded-md border bg-white p-2 sm:max-h-none sm:grid-cols-3">
               {bookList.map((book) => {
+                const isSelected = value.name === book.name;
                 return (
-                  <CheckButton
+                  <div
                     key={book.id}
-                    name={name}
-                    isSelected={value.name === book.name}
                     onClick={() => setBook(book)}
+                    className={cn(
+                      "group flex cursor-pointer flex-col items-center gap-y-2 rounded-md border border-transparent bg-slate-50 p-4 hover:bg-slate-100",
+                      isSelected &&
+                        "border-orange-500 bg-orange-50 hover:bg-orange-50 ",
+                    )}
                   >
-                    {book.name}
-                  </CheckButton>
+                    <Image
+                      src={bookCover}
+                      alt="book_cover"
+                      className="w-28 rounded-md"
+                    />
+                    <CheckButton
+                      name={name}
+                      isSelected={isSelected}
+                      onClick={() => setBook(book)}
+                      className={cn(
+                        "h-auto border-none bg-slate-50 py-0 group-hover:bg-slate-100 max-w-full truncate whitespace-pre-line",
+                        isSelected && "bg-orange-50 group-hover:bg-orange-50",
+                      )}
+                    >
+                      {book.name}
+                    </CheckButton>
+                  </div>
                 );
               })}
             </div>

@@ -29,7 +29,7 @@ const SetEpisodeField = () => {
         <FormItem>
           <FormLabel>ตอนที่ต้องการคั่น</FormLabel>
           <FormControl>
-            <div className="flex max-h-[20dvh] flex-col gap-2 overflow-y-auto rounded-md border bg-white p-2 lg:max-h-none lg:flex-row lg:flex-wrap">
+            <div className="flex max-h-[30dvh] flex-col gap-2 overflow-y-auto rounded-md border bg-white p-2 lg:max-h-none lg:flex-row lg:flex-wrap">
               {bookField.episodes.map((episode) => {
                 return (
                   <CheckButton
@@ -37,6 +37,7 @@ const SetEpisodeField = () => {
                     name={name}
                     isSelected={value.name === episode.name}
                     onClick={() => setEpisode(episode)}
+                    className="py-6"
                   >
                     ตอนที่ {episode.nth} ({episode.name})
                   </CheckButton>

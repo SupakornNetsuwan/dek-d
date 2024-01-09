@@ -1,5 +1,4 @@
 "server only";
-import { Suspense } from "react";
 import PrimaryWrapper from "@/core/layouts/PrimaryWrapper";
 import { Separator } from "@components/separator";
 import Banner from "./_resources/components/banner";
@@ -20,9 +19,7 @@ const Home = () => {
             <MenuBar />
           </div>
           <Separator orientation="horizontal" className="my-2" />
-          <Suspense fallback={<div>กำลังดาวน์โหลด...</div>}>
-            <BookmarkSection />
-          </Suspense>
+          <BookmarkSection />
         </div>
       </PrimaryWrapper>
     </div>

@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@components/dialog";
-import CreateBookMarkForm from "./form/CreateBookMarkForm";
+import CreateBookMarkForm from "./form";
 
 type ChildrenType = React.FC<{
   close: () => void;
