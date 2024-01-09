@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "@/core/components/ui/button";
 import { useFormContext } from "react-hook-form";
-import { CreateBookMarkSchemaType } from "@/core/entities/bookmark.entity";
+import { CreateBookmarkSchemaType } from "@/core/entities/bookmark.entity";
 import {
   FormControl,
   FormDescription,
@@ -13,7 +13,7 @@ import {
 import CheckButton from "./CheckButton";
 
 const SetEpisodeField = () => {
-  const { control, watch } = useFormContext<CreateBookMarkSchemaType>();
+  const { control, watch } = useFormContext<CreateBookmarkSchemaType>();
 
   const bookField = watch("book");
   const flaggedEpisodeField = watch("flaggedEpisode");

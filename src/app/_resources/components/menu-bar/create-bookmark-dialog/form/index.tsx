@@ -8,7 +8,7 @@ const CreateBookMarkForm = () => {
     <div className="flex flex-col gap-y-4">
       <SetBookField />
       <SetEpisodeField />
-      <Button className="self-end">Submit</Button>
+      <Button className="self-end">สร้าง</Button>
     </div>
   );
 };

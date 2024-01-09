@@ -1,7 +1,7 @@
-import BookMark from "../entities/bookmark.entity"
+import Bookmark from "../entities/bookmark.entity"
 
 const getAllBookMarks = async () => {
-    const bookMarks: BookMark[] = []
+    const bookMarks: Bookmark[] = []
     return bookMarks
 }
 

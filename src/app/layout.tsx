@@ -3,6 +3,7 @@ import { Prompt } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/core/components/navbar";
 import JotaiClientProvider from "@/core/providers/JotaiClientProvider";
+import { Toaster } from "@components/toaster";
 
 const prompt = Prompt({
   subsets: ["thai"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <body className={prompt.className}>
           <Navbar />
           {children}
+          <Toaster />
         </body>
       </JotaiClientProvider>
     </html>

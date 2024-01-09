@@ -1,23 +1,26 @@
 import { z } from "zod"
 import Book, { type EpisodeDto, BookDto, episodeSchema, createBookSchema } from "./book.entity";
 
-export interface BookMarkDto { book: BookDto, flaggedEpisode: EpisodeDto, updatedAt?: Date, createdAt?: Date }
+export interface BookmarkDto { id: string; book: BookDto, flaggedEpisode: EpisodeDto, updatedAt?: Date, createdAt?: Date }
 
 /**
- * @class BookMark
+ * @class Bookmark
  * @description Bookmark entity
+ * @property {String} id ไอดีสำหรับอ้างอิง
  * @property {Episode} flaggedEpisode ตอนที่ถูกคั่นไว้
  * @property {Date} updatedAt วันเวลาที่อัปดตล่าสุด
  * @property {Date} createdAt วันเวลาที่ถูกสร้าง
  */
 
-class BookMark {
+class Bookmark {
+    public id: string;
     public book: Book;
     public flaggedEpisode: EpisodeDto;
     public updatedAt: Date;
     public createdAt: Date;
 
-    constructor({ book: bookDto, flaggedEpisode, createdAt, updatedAt }: BookMarkDto) {
+    constructor({ id, book: bookDto, flaggedEpisode, createdAt, updatedAt }: BookmarkDto) {
+        this.id = id;
         this.book = new Book(bookDto) // เราเก็บ property หนังสือไว้เพื่อเข้าถึงได้ว่าที่คั่นนี้ของหนังสือเล่มไหนตามหลักการ Objecy Oriented ✨
         this.flaggedEpisode = flaggedEpisode;
         this.updatedAt = updatedAt || new Date();
@@ -63,7 +66,8 @@ class BookMark {
     }
 
     public toDto() {
-        const dto: BookMarkDto = {
+        const dto: BookmarkDto = {
+            id: this.id,
             book: Object.assign({}, this.book),
             flaggedEpisode: this.flaggedEpisode,
             createdAt: this.createdAt,
@@ -76,13 +80,14 @@ class BookMark {
 
 /* ------ Schema 🍽️ ------ */
 
-export const createBookMarkSchema = z.object({
+export const createBookmarkSchema = z.object({
+    id: z.string(),
     book: createBookSchema,
     flaggedEpisode: episodeSchema,
     createdAt: z.date().optional(),
     updatedAt: z.date().optional()
-}) satisfies z.ZodType<BookMarkDto>
+}) satisfies z.ZodType<BookmarkDto>
 
-export type CreateBookMarkSchemaType = z.infer<typeof createBookMarkSchema>
+export type CreateBookmarkSchemaType = z.infer<typeof createBookmarkSchema>
 
-export default BookMark;
+export default Bookmark;

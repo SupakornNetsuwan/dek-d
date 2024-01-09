@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useBookStorageAtom from "@/core/hooks/useBookStorageAtom";
 import { useFormContext, useWatch } from "react-hook-form";
-import { CreateBookMarkSchemaType } from "@/core/entities/bookmark.entity";
+import { CreateBookmarkSchemaType } from "@/core/entities/bookmark.entity";
 import {
   FormControl,
   FormDescription,
@@ -19,7 +19,7 @@ import bookCover from "@public/bookmark-thumbnail.jpg";
 const SetBookField = () => {
   const [bookList] = useBookStorageAtom();
   const { control, watch, setValue } =
-    useFormContext<CreateBookMarkSchemaType>();
+    useFormContext<CreateBookmarkSchemaType>();
   const bookFieldWatch = watch("book");
 
   // Reactive select of first episode of novel after change the book

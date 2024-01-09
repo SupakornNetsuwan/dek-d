@@ -1,54 +1,57 @@
 import React, { useState } from "react";
-import CreateBookMarkProvider from "./providers/CreateBookMarkProvider";
 import {
-  CustomDialogClose,
   Dialog,
+  CustomDialogClose,
+  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogHeader,
   DialogOverlay,
-  DialogPortal,
   DialogTitle,
   DialogTrigger,
+  DialogPortal,
+  DialogHeader,
 } from "@components/dialog";
-import CreateBookMarkForm from "./form";
+import useBookmarkStorageAtom from "@/core/hooks/useBookmarkStorageAtom";
+import { Button } from "@/core/components/ui/button";
 
 type ChildrenType = React.FC<{
   close: () => void;
   open: () => void;
 }>;
 
-const AddBookMark: React.FC<{
+const EditBookmarkDialog: React.FC<{
   children: ChildrenType;
-}> = ({ children }) => {
+  bookmarkId: string;
+}> = ({ children, bookmarkId }) => {
+
   const [isOpen, setIsOpen] = useState(false);
+  const { deleteBookmark } = useBookmarkStorageAtom();
 
   const close = () => setIsOpen(false);
   const open = () => setIsOpen(true);
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isOpen} >
       <DialogTrigger asChild>{children({ close, open })}</DialogTrigger>
       <DialogPortal>
         {/* Background overlay สีดำ ๆ  */}
         <DialogOverlay onClick={close} />
-        <DialogContent className="w-[90vw] max-h-[80dvh] overflow-y-auto">
+        <DialogContent className="max-h-[80dvh] w-[90vw] max-w-[30em] overflow-y-auto">
           {/* Decoupling กากบาทปิด Dialog ออกมา */}
           <CustomDialogClose onClick={close} />
           <DialogHeader>
-            <DialogTitle>สร้างที่คั่นใหม่ ✨</DialogTitle>
+            <DialogTitle className="text-slate-800">แก้ไขที่คั่นหนังสือ</DialogTitle>
             <DialogDescription>
-              ที่คั่นหนังสือช่วยให้คุณสามารถกลับมาอ่านหนังสือ ณ
-              จุดเดิมที่คั่นไว้ได้โดยไม่ต้องจำชื่อบท ชื่อตอน หรือ เลขหน้า
+              แก้ไขข้อมูลที่คั่นหนังสือเดิมในคลัง
             </DialogDescription>
           </DialogHeader>
-          <CreateBookMarkProvider>
-            <CreateBookMarkForm />
-          </CreateBookMarkProvider>
+          <div className="flex justify-end gap-x-1">
+           
+          </div>
         </DialogContent>
       </DialogPortal>
     </Dialog>
   );
 };
 
-export default AddBookMark;
+export default EditBookmarkDialog;

@@ -9,7 +9,6 @@ export const cn = (...inputs: ClassValue[]) => {
 
 export const timer = (duration: number) => new Promise((resolve) => setTimeout(resolve, duration))
 
-
 export const formatThaiDate = (date: Date, formatStr: string = "d MMM yyyy") => format(
   date,
   formatStr,
@@ -22,3 +21,9 @@ export const formatThaiDate = (date: Date, formatStr: string = "d MMM yyyy") => 
   }
   return item
 });
+
+export const randomString = (range: number) => {
+  const pool = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+  return [...new Array(range).keys()].map(_ => pool.charAt(Math.floor(Math.random() * pool.length))).join("")
+}

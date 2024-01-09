@@ -9,7 +9,7 @@ import {
 } from "@components/dropdown-menu";
 import { Button } from "@/core/components/ui/button";
 import { Plus, Settings2, Trash2 } from "lucide-react";
-import AddBookMark from "./create-bookmark";
+import CreateBookmarkDialog from "./create-bookmark-dialog";
 
 const MenuBar = () => {
   return (
@@ -21,7 +21,7 @@ const MenuBar = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-36 max-w-none">
-        <AddBookMark>
+        <CreateBookmarkDialog>
           {({ open }) => (
             <DropdownMenuItem
               onClick={(e) => {
@@ -37,8 +37,7 @@ const MenuBar = () => {
               <span>เพิ่มรายการ</span>
             </DropdownMenuItem>
           )}
-        </AddBookMark>
-
+        </CreateBookmarkDialog>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="group flex cursor-pointer justify-between p-1 sm:p-2">
           <Trash2

@@ -4,13 +4,13 @@ import React from "react";
 import getAllBookMarks from "@/core/actions/get-all-bookmarks.action";
 import BookMarkCard from "./bookmark";
 import { BoxSelect } from "lucide-react";
-import useBookMarkStorageAtom from "@/core/hooks/useBookMarkStorageAtom";
-import BookMark from "@/core/entities/bookmark.entity";
+import useBookmarkStorageAtom from "@/core/hooks/useBookmarkStorageAtom";
+import Bookmark from "@/core/entities/bookmark.entity";
 
 const BookmarkSection = () => {
-  const [bookMarkStorage] = useBookMarkStorageAtom();
+  const { bookmarkList } = useBookmarkStorageAtom();
 
-  if (!bookMarkStorage.length) {
+  if (!bookmarkList.length) {
     return (
       <div className="grid min-h-[50dvh] place-content-center rounded-lg bg-slate-50">
         <BoxSelect className=" w-full text-slate-500" size={32} />
@@ -21,13 +21,12 @@ const BookmarkSection = () => {
 
   return (
     <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-      {bookMarkStorage.map((bookMark) => {
-        const bookMarkInstance = new BookMark(bookMark);
+      {bookmarkList.map((bookmark) => {
+        const bookMarkInstance = new Bookmark(bookmark);
+
         return (
           <BookMarkCard
-            key={`${Math.floor(Math.random() * 100)}_${bookMark.book.id}_${
-              bookMark.flaggedEpisode.nth
-            }`}
+            key={bookmark.id}
             bookMarkDto={bookMarkInstance.toDto()}
           />
         );
