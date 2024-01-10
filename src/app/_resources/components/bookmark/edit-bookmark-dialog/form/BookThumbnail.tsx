@@ -4,6 +4,7 @@ import { PencilLine } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { useFormContext } from "react-hook-form";
+import LineChart from "./LineChart";
 
 const BookThumbnail = () => {
   const { getValues } = useFormContext<CreateBookmarkSchemaType>();
@@ -11,24 +12,23 @@ const BookThumbnail = () => {
   const book = new Book(getValues("book"));
 
   return (
-    <div className="w-full rounded-lg bg-gradient-to-r from-white via-white to-slate-50 p-2">
-      <div className="relative flex gap-x-4">
-        <Image
-          src={`/${book.thumbnail}`}
-          alt={`${book.name}_cover`}
-          width={200}
-          height={90}
-          className="rounded-md"
-        />
-        <div className="flex-1 rounded">
-          <h3 className="pb-1 text-lg font-semibold text-orange-500">
-            {book.name}
-          </h3>
-          <div className="flex gap-x-1 [&>p]:rounded-full [&>p]:bg-slate-100 [&>p]:px-2 [&>p]:py-0.5 [&>p]:text-xs [&>p]:text-slate-500">
-            <p>โดย {book.author}</p>
-            <p>จำนวนตอนทั้งหมด {book.getLastEpisode?.nth}</p>
-          </div>
-        </div>
+    <div className="relative w-full rounded-lg bg-gradient-to-r from-slate-50 via-white to-slate-50 p-2">
+      <Image
+        src={`/${book.thumbnail}`}
+        alt={`${book.name}_cover`}
+        width={60}
+        height={0}
+        className="absolute right-[4vw] top-0 box-content w-auto h-auto -translate-y-1/2 rounded-sm border-4 border-white shadow-xl"
+      />
+      <h3 className="pb-1 text-lg font-semibold text-orange-500">
+        {book.name}
+      </h3>
+      <div className="flex gap-x-1 [&>p]:rounded-full [&>p]:bg-slate-100 [&>p]:px-2 [&>p]:py-0.5 [&>p]:text-xs [&>p]:text-slate-500">
+        <p>โดย {book.author}</p>
+        <p>จำนวนตอนทั้งหมด {book.getLastEpisode?.nth}</p>
+      </div>
+      <div>
+        <LineChart />
       </div>
     </div>
   );
