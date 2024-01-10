@@ -11,6 +11,7 @@ import {
   DialogPortal,
   DialogHeader,
 } from "@components/dialog";
+import { cn } from "../lib/utils";
 
 type DialogActionsType = React.FC<{
   close: () => void;
@@ -18,11 +19,12 @@ type DialogActionsType = React.FC<{
 }>;
 
 const CustomDialog: React.FC<{
+  className ?: string;
   children: DialogActionsType;
   render: DialogActionsType;
   title?: string;
   description?: string;
-}> = ({ children, render, title, description }) => {
+}> = ({ children, render, title, description, className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const close = () => setIsOpen(false);
@@ -34,7 +36,9 @@ const CustomDialog: React.FC<{
       <DialogPortal>
         {/* Background overlay สีดำ ๆ  */}
         <DialogOverlay onClick={close} />
-        <DialogContent className="max-h-[80dvh] w-[90vw] overflow-y-auto">
+        <DialogContent
+          className={cn("max-h-[80dvh] w-[90vw] overflow-y-auto", className)}
+        >
           {/* Decoupling กากบาทปิด Dialog ออกมา */}
           <CustomDialogClose onClick={close} />
           <DialogHeader>

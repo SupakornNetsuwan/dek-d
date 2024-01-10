@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Bookmark, {
+import {
   createBookmarkSchema,
   type CreateBookmarkSchemaType,
 } from "@/core/entities/bookmark.entity";
 import { useToast } from "@components/use-toast";
-import useBookStorageAtom from "@/core/hooks/useBookStorageAtom";
 import useBookmarkStorageAtom from "@/core/hooks/useBookmarkStorageAtom";
 import { randomString } from "@/core/lib/utils";
 
@@ -15,15 +14,12 @@ const EditBookmarkProvider: React.FC<
 > = ({ children, closeDialog, bookmarkId }) => {
   const { toast } = useToast();
   const { getBookmark } = useBookmarkStorageAtom();
-
   const targetBookmark = getBookmark(bookmarkId);
-
-  if (!targetBookmark) throw new Error("No bookmark found from provided ID");
 
   const methods = useForm<CreateBookmarkSchemaType>({
     resolver: zodResolver(createBookmarkSchema),
     defaultValues: {
-      id: randomString(10),
+      id: targetBookmark.id,
       book: targetBookmark.book,
       flaggedEpisode: targetBookmark.flaggedEpisode,
       createdAt: new Date(targetBookmark.createdAt),
@@ -38,7 +34,7 @@ const EditBookmarkProvider: React.FC<
       title: "แก้ไขที่คั่นแล้ว",
       description: `ที่คั่นสำหรับเรื่อง ${data.book.name} ถูกแก้ไขแล้ว`,
     });
-    
+
     closeDialog();
   };
 

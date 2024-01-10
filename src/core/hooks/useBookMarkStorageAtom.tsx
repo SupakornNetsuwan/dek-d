@@ -33,7 +33,9 @@ const useBookmarkStorageAtom = () => {
   };
 
   const getBookmark = (id: string) => {
-    return bookmarkStorage.find((bookmark) => bookmark.id === id);
+    const found = bookmarkStorage.find((bookmark) => bookmark.id === id);
+    if (!found) throw new Error("No bookmark found from providing ID");
+    return found;
   };
 
   return {

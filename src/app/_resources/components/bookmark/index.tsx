@@ -76,6 +76,7 @@ const BookMarkCard: React.FC<{ bookmarkDto: BookmarkDto }> = ({
 
             <DropdownMenuSeparator />
             <CustomDialog
+            className="max-w-[30em]"
               title="ลบที่คั่นหนังสือ"
               description="คุณจะไม่สามารถกู้คืนที่คั่นหนังสือได้"
               render={() => (
