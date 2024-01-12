@@ -1,7 +1,6 @@
 "use client";
 import { timer } from "@/core/lib/utils";
 import React from "react";
-import getAllBookMarks from "@/core/actions/get-all-bookmarks.action";
 import BookMarkCard from "./bookmark";
 import { BoxSelect } from "lucide-react";
 import useBookmarkStorageAtom from "@/core/hooks/useBookmarkStorageAtom";

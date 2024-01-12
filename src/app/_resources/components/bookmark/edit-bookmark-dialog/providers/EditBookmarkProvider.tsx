@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
+import Bookmark, {
   createBookmarkSchema,
   type CreateBookmarkSchemaType,
 } from "@/core/entities/bookmark.entity";
@@ -13,7 +13,7 @@ const EditBookmarkProvider: React.FC<
   React.PropsWithChildren & { closeDialog: () => void; bookmarkId: string }
 > = ({ children, closeDialog, bookmarkId }) => {
   const { toast } = useToast();
-  const { getBookmark } = useBookmarkStorageAtom();
+  const { getBookmark, updateBookmark } = useBookmarkStorageAtom();
   const targetBookmark = getBookmark(bookmarkId);
 
   const methods = useForm<CreateBookmarkSchemaType>({
@@ -29,6 +29,8 @@ const EditBookmarkProvider: React.FC<
   const handleSubmit: SubmitHandler<CreateBookmarkSchemaType> = (data) => {
     // จำลองว่า POST Request ไปสร้างรายการใหม่ที่ Back-end side
     const now = new Date();
+
+    updateBookmark(bookmarkId, new Bookmark({ ...data, updatedAt: now }));
 
     toast({
       title: "แก้ไขที่คั่นแล้ว",

@@ -1,6 +1,6 @@
 import { atomWithStorage } from "jotai/utils"
 import Bookmark from "../entities/bookmark.entity"
 
-const bookMarkStorageAtom = atomWithStorage<Bookmark[]>("bookMarkStorage", [])
+const bookmarkStorageAtom = atomWithStorage<Bookmark[]>("bookmarkStorage", [])
 
-export default bookMarkStorageAtom
+export default bookmarkStorageAtom

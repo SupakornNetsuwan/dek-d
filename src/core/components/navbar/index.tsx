@@ -1,4 +1,4 @@
-"server only"
+"server only";
 import SmallNavbarCore from "./small";
 import LargeNavbarCore from "./large";
 import NavFrame from "./NavFrame";

@@ -19,10 +19,6 @@ const useBookmarkStorageAtom = () => {
     setBookmarkStorage(
       bookmarkStorage.filter((bookmark) => bookmark.id !== id),
     );
-    toast({
-      title: "ลบที่คั่นแล้ว",
-      description: `ที่คั่นหนังสือถูกนำออกจากคลังอย่างถาวร`,
-    });
   };
 
   const updateBookmark = (id: string, updateBookmark: Bookmark) => {
