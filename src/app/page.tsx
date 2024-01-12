@@ -6,6 +6,7 @@ import MenuBar from "./_resources/components/menu-bar";
 import BookmarkSection from "./_resources/components/BookmarkSection";
 
 const Home = () => {
+
   return (
     <div className="pb-[10dvh]">
       <Banner />

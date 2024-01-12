@@ -3,106 +3,39 @@ import React, { useMemo } from "react";
 import Bookmark, { BookmarkDto } from "@/core/entities/bookmark.entity";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
-import { formatThaiDate } from "@/core/lib/utils";
+import { cn, formatThaiDate } from "@/core/lib/utils";
 import ProgressBar from "./ProgressBar";
-import { MoreHorizontal, Pencil, Trash2 } from "lucide-react";
-import { Button } from "@/core/components/ui/button";
+import useMenuBarCustomizeAtom from "@/core/hooks/useMenuBarCustomizeAtom";
+import EditBookmark from "./EditBookmark";
+import DeleteBookmarkCheckIcon from "./DeleteBookmarkCheckIcon";
 import { gsap } from "gsap";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@components/dropdown-menu";
-import CustomDialog from "@/core/components/CustomDialog";
-import EditBookmarkProvider from "./edit-bookmark-dialog/providers/EditBookmarkProvider";
-import DeleteBookmarkDialogContent from "./delete-bookmark-dialog";
-import EditBookMarkForm from "./edit-bookmark-dialog/form";
 
 const BookMarkCard: React.FC<{ bookmarkDto: BookmarkDto }> = ({
   bookmarkDto,
 }) => {
+  const { menuBarCustomize, checkIsInDeleteList, toggleDeleteList } =
+    useMenuBarCustomizeAtom();
   useGSAP(() => {});
 
   const bookmark = useMemo(() => new Bookmark(bookmarkDto), [bookmarkDto]);
+  const isDeleteMode = menuBarCustomize.mode === "delete-mode";
+  const isNormalMode = menuBarCustomize.mode === "normal-mode";
+  const isInDeleteList = checkIsInDeleteList(bookmark.id);
 
   return (
-    <div className="flex flex-col space-y-1 rounded-lg border bg-gray-50 p-2">
+    <div
+      onClick={() => isDeleteMode && toggleDeleteList(bookmark.id)}
+      className={cn(
+        "flex flex-col space-y-1 rounded-lg border bg-gray-50 p-2",
+        isDeleteMode && "cursor-pointer",
+        isDeleteMode && isInDeleteList && "border-2 border-red-500 bg-red-50",
+      )}
+    >
       <div className="flex w-full justify-end">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              className="size-6 rounded-sm sm:size-5 sm:border-none"
-            >
-              <MoreHorizontal size={14} className="" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-36 max-w-none">
-            <CustomDialog
-              title="แก้ไขที่คั่นหนังสือ"
-              description="แก้ไขข้อมูลที่คั่นหนังสือเดิมในคลัง"
-              render={({ open, close }) => {
-                return (
-                  <EditBookmarkProvider
-                    bookmarkId={bookmark.id}
-                    closeDialog={close}
-                  >
-                    <EditBookMarkForm />
-                  </EditBookmarkProvider>
-                );
-              }}
-            >
-              {({ open }) => {
-                return (
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault();
-                      open();
-                    }}
-                    className="group flex cursor-pointer justify-between p-1 sm:p-2"
-                  >
-                    <Pencil
-                      size={14}
-                      className="box-content rounded-sm bg-gray-100 p-2 group-hover:bg-gray-200"
-                    />
-                    <span>แก้ไขรายการ</span>
-                  </DropdownMenuItem>
-                );
-              }}
-            </CustomDialog>
-
-            <DropdownMenuSeparator />
-            <CustomDialog
-            className="max-w-[30em]"
-              title="ลบที่คั่นหนังสือ"
-              description="คุณจะไม่สามารถกู้คืนที่คั่นหนังสือได้"
-              render={() => (
-                <DeleteBookmarkDialogContent bookmarkId={bookmark.id} />
-              )}
-            >
-              {({ open }) => (
-                <DropdownMenuItem
-                  onClick={(e) => {
-                    e.preventDefault();
-                    open();
-                  }}
-                  className="group flex cursor-pointer justify-between p-1 sm:p-2"
-                >
-                  <Trash2
-                    size={14}
-                    className="box-content rounded-sm bg-gray-100 p-2 group-hover:bg-gray-200"
-                  />
-                  <span>ลบรายการ</span>
-                </DropdownMenuItem>
-              )}
-            </CustomDialog>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {isNormalMode && <EditBookmark bookmarkId={bookmark.id} />}
+        {isDeleteMode && <DeleteBookmarkCheckIcon bookmarkId={bookmark.id} />}
       </div>
-      <div className="flex">
+      <div className={cn("flex", isDeleteMode && "animate-pulse")}>
         <div className="basis-1/3">
           <Image
             src={`/${bookmark.book.thumbnail}`}
