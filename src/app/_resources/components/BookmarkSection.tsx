@@ -1,6 +1,4 @@
 "use client";
-import { timer } from "@/core/lib/utils";
-import React from "react";
 import BookMarkCard from "./bookmark";
 import { BoxSelect } from "lucide-react";
 import useBookmarkStorageAtom from "@/core/hooks/useBookmarkStorageAtom";
@@ -20,13 +18,13 @@ const BookmarkSection = () => {
 
   return (
     <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-      {bookmarkList.map((bookmark) => {
-        const bookMarkInstance = new Bookmark(bookmark);
+      {bookmarkList.map((bookmarkDto) => {
+        const bookMark = new Bookmark(bookmarkDto);
 
         return (
           <BookMarkCard
-            key={bookmark.id}
-            bookmarkDto={bookMarkInstance.toDto()}
+            key={bookmarkDto.id}
+            bookmark={bookMark}
           />
         );
       })}

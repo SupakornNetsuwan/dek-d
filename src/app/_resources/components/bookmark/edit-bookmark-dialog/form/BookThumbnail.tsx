@@ -1,6 +1,5 @@
 import Book from "@/core/entities/book.entity";
 import { CreateBookmarkSchemaType } from "@/core/entities/bookmark.entity";
-import { PencilLine } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { useFormContext } from "react-hook-form";

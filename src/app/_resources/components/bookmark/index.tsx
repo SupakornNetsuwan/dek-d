@@ -1,6 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
-import Bookmark, { BookmarkDto } from "@/core/entities/bookmark.entity";
+import Bookmark from "@/core/entities/bookmark.entity";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { cn, formatThaiDate } from "@/core/lib/utils";
@@ -10,14 +10,11 @@ import EditBookmark from "./EditBookmark";
 import DeleteBookmarkCheckIcon from "./DeleteBookmarkCheckIcon";
 import { gsap } from "gsap";
 
-const BookMarkCard: React.FC<{ bookmarkDto: BookmarkDto }> = ({
-  bookmarkDto,
-}) => {
+const BookMarkCard: React.FC<{ bookmark: Bookmark }> = ({ bookmark }) => {
   const { menuBarCustomize, checkIsInDeleteList, toggleDeleteList } =
     useMenuBarCustomizeAtom();
   useGSAP(() => {});
 
-  const bookmark = useMemo(() => new Bookmark(bookmarkDto), [bookmarkDto]);
   const isDeleteMode = menuBarCustomize.mode === "delete-mode";
   const isNormalMode = menuBarCustomize.mode === "normal-mode";
   const isInDeleteList = checkIsInDeleteList(bookmark.id);
@@ -38,6 +35,7 @@ const BookMarkCard: React.FC<{ bookmarkDto: BookmarkDto }> = ({
       <div className={cn("flex", isDeleteMode && "animate-pulse")}>
         <div className="basis-1/3">
           <Image
+            priority
             src={`/${bookmark.book.thumbnail}`}
             alt="bookmark_thumbnail"
             className="pointer-events-none w-full rounded-lg"
