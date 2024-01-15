@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/core/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
-import CreateBookMarkProvider from "../create-bookmark-dialog/providers/CreateBookmarkProvider";
+import CreateBookMarkProvider from "../create-bookmark-dialog/providers/CreateXBookmarkProvider";
 import CreateBookMarkForm from "../create-bookmark-dialog/form";
 import CustomDialog from "@/core/components/CustomDialog";
 import useMenuBarCustomizeAtom from "@/core/hooks/useMenuBarCustomizeAtom";
