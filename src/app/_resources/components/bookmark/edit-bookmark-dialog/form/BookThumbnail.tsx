@@ -17,7 +17,7 @@ const BookThumbnail = () => {
         alt={`${book.name}_cover`}
         width={60}
         height={0}
-        className="hidden md:block absolute right-[4vw] top-0 box-content w-auto h-auto -translate-y-1/2 rounded-sm border-4 border-white shadow-xl"
+        className="hidden md:block absolute right-[4vw] top-0 box-content w-auto h-auto max-w-[5em] -translate-y-1/2 rounded-sm border-4 border-white shadow-xl"
       />
       <h3 className="pb-1 text-lg font-semibold text-orange-500">
         {book.name}

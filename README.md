@@ -2,7 +2,7 @@
 
 โปรเจคนี้ถูกสร้างเพื่อยื่นสมัครเข้าร่วมสหกิจ Dek-D ประจำปี 2024
 
-## Getting start
+## เริ่มต้น 🚀
 เพื่อเริ่มต้นโปรเจคนี้ คุณสามารถทำได้ 2 วิธี ดังต่อไปนี้
 
 ### วิธีที่ 1
@@ -27,14 +27,17 @@ npm run dev
 ### วิธีที่ 3
 รันโปรแกรมผ่าน Dockerfile
 ```bash
-docker build -t dek-d-supakorn:latest . 
+docker build -t supakorn-dekd:latest . 
 
-docker run -d -p 3000:3000 --name dek-d-supakorn dek-d-supakorn
+docker run -d -p 3000:3000 --name supakorn-dekd supakorn-dekd
 ```
 
-### วิธีที่ 4
-ใช้ Docker public image
-```bash
-docker pull earththai98/dekd:1.0
-docker run -d -p 3000:3000 --name dek-d-supakorn earththai98/dek-d-supakorn:1.0
-```
+## ตัวอย่าง 🚀
+รูปภาพตัวอย่างหน้าจอของโปรแกรม
+![Landing screen](https://img5.pic.in.th/file/secure-sv1/Screenshot-2024-01-15-222211.png)
+![Landing with visualize graph](https://img5.pic.in.th/file/secure-sv1/Screenshot-2024-01-15-222438.png)
+![create-bookmark.png](https://img2.pic.in.th/pic/create-bookmark.png)
+![delete-bookmark.png](https://img2.pic.in.th/pic/delete-bookmark.png)
+![edit-bookmark.png](https://img5.pic.in.th/file/secure-sv1/edit-bookmark.png)
+![navbar-1.png](https://img2.pic.in.th/pic/navbar-1.png)
+![navbar-2.png](https://img5.pic.in.th/file/secure-sv1/navbar-2.png)
