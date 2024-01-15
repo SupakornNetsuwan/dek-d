@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Dek-D project
 
-## Getting Started
+โปรเจคนี้ถูกสร้างเพื่อยื่นสมัครเข้าร่วมสหกิจ Dek-D ประจำปี 2024
 
-First, run the development server:
+## เริ่มต้น 🚀
+เพื่อเริ่มต้นโปรเจคนี้ คุณสามารถทำได้ 2 วิธี ดังต่อไปนี้
 
+### วิธีที่ 1
+Build โปรเจคและรันโปรแกรมในรูปแบบ Production environment
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm i # ติดตั้ง Dependencies
+
+npm run build # สร้างโปรเจค
+
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### วิธีที่ 2
+รันโปรแกรมใน Development mode
+> ไม่แนะนำ เนื่องจาก Poor performance ของ Next.js ใน Development mode เมื่อเริ่มต้น Cold start
+```bash
+npm i # ติดตั้ง Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### วิธีที่ 3
+รันโปรแกรมผ่าน Dockerfile
+```bash
+docker build -t supakorn-dekd:latest . 
 
-## Learn More
+docker run -d -p 3000:3000 --name supakorn-dekd supakorn-dekd
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## ตัวอย่าง 🚀
+รูปภาพตัวอย่างหน้าจอของโปรแกรม
+![Landing screen](https://img5.pic.in.th/file/secure-sv1/Screenshot-2024-01-15-222211.png)
+![Landing with visualize graph](https://img5.pic.in.th/file/secure-sv1/Screenshot-2024-01-15-222438.png)
+![create-bookmark.png](https://img2.pic.in.th/pic/create-bookmark.png)
+![delete-bookmark.png](https://img2.pic.in.th/pic/delete-bookmark.png)
+![edit-bookmark.png](https://img5.pic.in.th/file/secure-sv1/edit-bookmark.png)
+![navbar-1.png](https://img2.pic.in.th/pic/navbar-1.png)
+![navbar-2.png](https://img5.pic.in.th/file/secure-sv1/navbar-2.png)
