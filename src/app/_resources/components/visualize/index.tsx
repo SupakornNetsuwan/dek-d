@@ -8,7 +8,7 @@ const Visualize = () => {
 
   return (
     <div className="pt-4">
-      <div className="relative flex min-h-[25dvh] w-full gap-x-0.5 bg-gradient-to-t from-orange-50 to-white px-2 pl-8 sm:pl-2">
+      <div className="min-w-[10em] relative flex min-h-[25dvh] w-full gap-x-0.5 bg-gradient-to-t from-orange-50 to-white px-2 pl-8 sm:pl-2">
         {bookmarkList.map((bookmarkDto) => {
           const bookMark = new Bookmark(bookmarkDto);
           return <BookmarkBar key={bookMark.id} bookmark={bookMark} />;

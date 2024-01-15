@@ -21,7 +21,7 @@ const SetEpisodeField = () => {
   if (!flaggedEpisodeField) {
     return null;
   }
-  
+
   return (
     <FormField
       name="flaggedEpisode"
@@ -40,7 +40,9 @@ const SetEpisodeField = () => {
                     onClick={() => setEpisode(episode)}
                     className="py-6"
                   >
-                    ตอนที่ {episode.nth} ({episode.name})
+                    <span className="whitespace-normal text-sm md:text-base">
+                      ตอนที่ {episode.nth} <br className="block sm:hidden"/>({episode.name})
+                    </span>
                   </CheckButton>
                 );
               })}

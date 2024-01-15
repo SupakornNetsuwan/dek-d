@@ -34,7 +34,7 @@ const BookmarkBar: React.FC<{ bookmark: Bookmark }> = ({ bookmark }) => {
           "bar relative z-20 mx-auto w-full max-w-[4em] rounded-md bg-gradient-to-t from-orange-100/50 via-amber-500 to-orange-500 duration-100 group-hover:scale-110 group-hover:shadow-realistic-1 ",
         )}
       />
-      <div className="absolute -top-2 left-1/2 z-10 -translate-x-1/2 -translate-y-full rounded-sm border bg-white p-1 opacity-0 group-hover:opacity-100">
+      <div className="absolute hidden sm:block -top-2 left-1/2 z-10 -translate-x-1/2 -translate-y-full rounded-sm border bg-white p-1 opacity-0 group-hover:opacity-100">
         <p className="min-w-0 whitespace-nowrap text-sm">
           {bookmark.book.name}
         </p>
